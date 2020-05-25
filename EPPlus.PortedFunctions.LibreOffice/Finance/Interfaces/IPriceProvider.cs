@@ -11,13 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EPPlus.PortedFunctions.LibreOffice.Engineering
+namespace EPPlus.PortedFunctions.LibreOffice.Finance.Interfaces
 {
-    public abstract class BesselBase
+    public interface IPriceProvider
     {
-        protected const double f_PI = 3.1415926535897932385;
-        protected const double f_PI_DIV_2 = f_PI / 2.0;
-        protected const double f_PI_DIV_4 = f_PI / 4.0;
-        protected const double f_2_DIV_PI = 2.0 / f_PI;
+        double GetPrice(System.DateTime settlement, System.DateTime maturity, double rate, double yield, double redemption, int frequency, DayCountBasis basis = DayCountBasis.US_30_360);
     }
 }

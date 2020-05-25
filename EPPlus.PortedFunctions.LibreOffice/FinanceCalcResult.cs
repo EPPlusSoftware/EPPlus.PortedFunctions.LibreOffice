@@ -4,35 +4,35 @@ using System.Text;
 
 namespace EPPlus.PortedFunctions.LibreOffice
 {
-    public class PfCalcResult<T>
+    public class FinanceCalcResult<T>
     {
-        public PfCalcResult(T result)
+        public FinanceCalcResult(T result)
         {
             Result = result;
             if (result is double)
             {
-                DataType = PfDataType.Decimal;
+                DataType = DataType.Decimal;
             }
             else if (result is int)
             {
-                DataType = PfDataType.Integer;
+                DataType = DataType.Integer;
             }
             else if (result is System.DateTime)
             {
-                DataType = PfDataType.Date;
+                DataType = DataType.Date;
             }
             else
             {
-                DataType = PfDataType.Unknown;
+                DataType = DataType.Unknown;
             }
         }
-        public PfCalcResult(T result, PfDataType dataType)
+        public FinanceCalcResult(T result, DataType dataType)
         {
             Result = result;
             DataType = dataType;
         }
 
-        public PfCalcResult(PfErrorType error)
+        public FinanceCalcResult(PfErrorType error)
         {
             HasError = true;
             ExcelErrorType = error;
@@ -40,7 +40,7 @@ namespace EPPlus.PortedFunctions.LibreOffice
 
         public T Result { get; private set; }
 
-        public PfDataType DataType { get; private set; }
+        public DataType DataType { get; private set; }
 
         public bool HasError
         {

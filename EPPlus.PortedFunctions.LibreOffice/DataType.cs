@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EPPlus.PortedFunctions.LibreOffice
 {
-    public enum PfDataType
+    public enum DataType
     {
         Integer,
         Decimal,

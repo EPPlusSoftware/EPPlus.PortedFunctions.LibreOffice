@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*************************************************************************************************
+  * This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *************************************************************************************************
+  Date               Author                       Change
+ *************************************************************************************************
+  05/20/2020         EPPlus Software AB       Implemented function
+ *************************************************************************************************/
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,13 +15,13 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
 {
     public class BesselYImpl : BesselBase
     {
-        static PfCalcResult<double> Bessely0(double fX)
+        static FinanceCalcResult<double> Bessely0(double fX)
         {
             if (fX <= 0)
-                return new PfCalcResult<double>(PfErrorType.Num);
+                return new FinanceCalcResult<double>(PfErrorType.Num);
             const double fMaxIteration = 9000000.0; // should not be reached
             if (fX > 5.0e+6) // iteration is not considerable better then approximation
-                return new PfCalcResult<double>(Math.Sqrt(1 / f_PI / fX)
+                return new FinanceCalcResult<double>(Math.Sqrt(1 / f_PI / fX)
                         * (Math.Sin(fX) - Math.Cos(fX)));
             const double epsilon = 1.0e-15;
             const double EulerGamma = 0.57721566490153286060;
@@ -51,21 +60,21 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
             }
             while (!bHasFound && k < fMaxIteration);
             if (!bHasFound)
-                return new PfCalcResult<double>(PfErrorType.Num); // not likely to happen
-            return new PfCalcResult<double>(u * f_2_DIV_PI);
+                return new FinanceCalcResult<double>(PfErrorType.Num); // not likely to happen
+            return new FinanceCalcResult<double>(u * f_2_DIV_PI);
         }
 
         // See #i31656# for a commented version of this implementation, attachment #desc6
         // https://bz.apache.org/ooo/attachment.cgi?id=63609
         /// @throws IllegalArgumentException
         /// @throws NoConvergenceException
-        static PfCalcResult<double> Bessely1(double fX)
+        static FinanceCalcResult<double> Bessely1(double fX)
         {
             if (fX <= 0)
-                return new PfCalcResult<double>(PfErrorType.Num);
+                return new FinanceCalcResult<double>(PfErrorType.Num);
             const double fMaxIteration = 9000000.0; // should not be reached
             if (fX > 5.0e+6) // iteration is not considerable better then approximation
-                return new PfCalcResult<double>(-Math.Sqrt(1 / f_PI / fX)
+                return new FinanceCalcResult<double>(-Math.Sqrt(1 / f_PI / fX)
                         * (Math.Sin(fX) + Math.Cos(fX)));
             const double epsilon = 1.0e-15;
             const double EulerGamma = 0.57721566490153286060;
@@ -106,12 +115,12 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
             }
             while (!bHasFound && k < fMaxIteration);
             if (!bHasFound)
-                new PfCalcResult<double>(PfErrorType.Num);
-            return new PfCalcResult<double>(-u * 2.0 / f_PI);
+                new FinanceCalcResult<double>(PfErrorType.Num);
+            return new FinanceCalcResult<double>(-u * 2.0 / f_PI);
         }
 
 
-        public PfCalcResult<double> BesselY(double fNum, int nOrder)
+        public FinanceCalcResult<double> BesselY(double fNum, int nOrder)
         {
             switch (nOrder)
             {
@@ -134,7 +143,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
                             fBy = fByp;
                         }
 
-                        return new PfCalcResult<double>(fBy);
+                        return new FinanceCalcResult<double>(fBy);
                     }
             }
         }

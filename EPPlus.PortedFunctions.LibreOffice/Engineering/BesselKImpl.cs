@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*************************************************************************************************
+  * This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *************************************************************************************************
+  Date               Author                       Change
+ *************************************************************************************************
+  05/20/2020         EPPlus Software AB       Implemented function
+ *************************************************************************************************/
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +15,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
 {
     public class BesselKImpl : BesselBase
     {
-        static PfCalcResult<double> Besselk0(double fNum)
+        static FinanceCalcResult<double> Besselk0(double fNum)
         {
             double fRet;
 
@@ -31,12 +40,12 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
                         y * (-0.251540e-2 + y * 0.53208e-3))))));
             }
 
-            return new PfCalcResult<double>(fRet);
+            return new FinanceCalcResult<double>(fRet);
         }
 
         /// @throws IllegalArgumentException
         /// @throws NoConvergenceException
-        static PfCalcResult<double> Besselk1(double fNum)
+        static FinanceCalcResult<double> Besselk1(double fNum)
         {
             double fRet;
 
@@ -61,10 +70,10 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
                         y * (0.325614e-2 + y * -0.68245e-3))))));
             }
 
-            return new PfCalcResult<double>(fRet);
+            return new FinanceCalcResult<double>(fRet);
         }
 
-        public PfCalcResult<double> BesselK(double fNum, int nOrder)
+        public FinanceCalcResult<double> BesselK(double fNum, int nOrder)
         {
             switch (nOrder)
             {
@@ -87,7 +96,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
                             fBk = fBkp;
                         }
 
-                        return new PfCalcResult<double>(fBk);
+                        return new FinanceCalcResult<double>(fBk);
                     }
             }
         }

@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*************************************************************************************************
+  * This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *************************************************************************************************
+  Date               Author                       Change
+ *************************************************************************************************
+  05/20/2020         EPPlus Software AB       Implemented function
+ *************************************************************************************************/
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,12 +15,12 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
 {
     public class BesselIimpl : BesselBase
     {
-        public PfCalcResult<double> BesselI(double x, int n)
+        public FinanceCalcResult<double> BesselI(double x, int n)
         {
             const int nMaxIteration = 2000;
             double fXHalf = x / 2.0;
             if (n < 0)
-                return new PfCalcResult<double>(PfErrorType.Num);
+                return new FinanceCalcResult<double>(PfErrorType.Num);
 
             double fResult = 0.0;
 
@@ -58,7 +67,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
                 while ((Math.Abs(fTerm) > Math.Abs(fResult) * fEpsilon) && (nK < nMaxIteration));
 
             }
-            return new PfCalcResult<double>(fResult);
+            return new FinanceCalcResult<double>(fResult);
         }
     }
 }

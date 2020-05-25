@@ -1,8 +1,12 @@
-﻿/*
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
+﻿/*************************************************************************************************
+  * This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *************************************************************************************************
+  Date               Author                       Change
+ *************************************************************************************************
+  05/20/2020         EPPlus Software AB       Implemented function
+ *************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,12 +16,12 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
     public class BesselJImpl : BesselBase
     {
         
-        public PfCalcResult<double> BesselJ(double x, int N)
+        public FinanceCalcResult<double> BesselJ(double x, int N)
         {
             if (N < 0)
-                return new PfCalcResult<double>(PfErrorType.Num);
+                return new FinanceCalcResult<double>(PfErrorType.Num);
             if (x == 0.0)
-                return new PfCalcResult<double>((N == 0) ? 1.0 : 0.0);
+                return new FinanceCalcResult<double>((N == 0) ? 1.0 : 0.0);
 
             /*  The algorithm works only for x>0, therefore remember sign. BesselJ
                 with integer order N is an even function for even N (means J(-x)=J(x))
@@ -31,9 +35,9 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
             if (fEstimateIteration > fMaxIteration)
             {
                 if (!bAsymptoticPossible)
-                    return new PfCalcResult<double>(PfErrorType.Num);
+                    return new FinanceCalcResult<double>(PfErrorType.Num);
                 var res = fSign * Math.Sqrt(f_2_DIV_PI / fX) * Math.Cos(fX - N * f_PI_DIV_2 - f_PI_DIV_4);
-                return new PfCalcResult<double>(res);
+                return new FinanceCalcResult<double>(res);
             }
 
             const double epsilon = 1.0e-15; // relative error
@@ -105,9 +109,9 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
             }
             while (!bHasfound && k <= fMaxIteration);
             if (!bHasfound)
-                return new PfCalcResult<double>(PfErrorType.Num); // unlikely to happen
+                return new FinanceCalcResult<double>(PfErrorType.Num); // unlikely to happen
 
-            return new PfCalcResult<double>(u * fSign);
+            return new FinanceCalcResult<double>(u * fSign);
         }
     }
 }

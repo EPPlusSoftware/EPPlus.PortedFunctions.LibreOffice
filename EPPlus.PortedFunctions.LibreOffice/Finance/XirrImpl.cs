@@ -18,9 +18,9 @@ namespace EPPlus.PortedFunctions.LibreOffice.Finance
     public static class XirrImpl
     {
 
-        public static PfCalcResult<double> GetXirr(IEnumerable<double> aValues, IEnumerable<System.DateTime> aDates, double rGuessRate = 0.1)
+        public static FinanceCalcResult<double> GetXirr(IEnumerable<double> aValues, IEnumerable<System.DateTime> aDates, double rGuessRate = 0.1)
         {
-            if (aValues.Count() != aDates.Count()) return new PfCalcResult<double>(PfErrorType.Value);
+            if (aValues.Count() != aDates.Count()) return new FinanceCalcResult<double>(PfErrorType.Value);
 
             // maximum epsilon for end of iteration
             const double fMaxEps = 1e-10;
@@ -63,8 +63,8 @@ namespace EPPlus.PortedFunctions.LibreOffice.Finance
             while (bContLoop && !bResultRateScanEnd);
 
             if (bContLoop)
-                return new PfCalcResult<double>(PfErrorType.Value);
-            return new PfCalcResult<double>(fResultRate);
+                return new FinanceCalcResult<double>(PfErrorType.Value);
+            return new FinanceCalcResult<double>(fResultRate);
         }
 
         static double lcl_sca_XirrResult_Deriv1(IEnumerable<double> rValues, IEnumerable<System.DateTime> rDates, double fRate)

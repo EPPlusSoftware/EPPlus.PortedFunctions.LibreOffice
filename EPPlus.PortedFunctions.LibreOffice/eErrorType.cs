@@ -7,7 +7,7 @@ namespace EPPlus.PortedFunctions.LibreOffice
     /// <summary>
     /// Represents the errortypes in excel
     /// </summary>
-    public enum PfErrorType
+    public enum eErrorType
     {
         /// <summary>
         /// Division by zero
