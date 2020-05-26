@@ -11,11 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EPPlus.PortedFunctions.LibreOffice.Finance
+namespace EPPlus.PortedFunctions.LibreOffice.Finance.Interfaces
 {
-    public enum PmtDue
+    public interface IYearFracProvider
     {
-        EndOfPeriod = 0,
-        BeginningOfPeriod = 1
+        double GetYearFrac(System.DateTime date1, System.DateTime date2, DayCountBasis basis);
     }
 }
