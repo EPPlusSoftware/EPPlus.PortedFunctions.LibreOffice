@@ -18,7 +18,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
         static FinanceCalcResult<double> Bessely0(double fX)
         {
             if (fX <= 0)
-                return new FinanceCalcResult<double>(PfErrorType.Num);
+                return new FinanceCalcResult<double>(eErrorType.Num);
             const double fMaxIteration = 9000000.0; // should not be reached
             if (fX > 5.0e+6) // iteration is not considerable better then approximation
                 return new FinanceCalcResult<double>(Math.Sqrt(1 / f_PI / fX)
@@ -60,7 +60,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
             }
             while (!bHasFound && k < fMaxIteration);
             if (!bHasFound)
-                return new FinanceCalcResult<double>(PfErrorType.Num); // not likely to happen
+                return new FinanceCalcResult<double>(eErrorType.Num); // not likely to happen
             return new FinanceCalcResult<double>(u * f_2_DIV_PI);
         }
 
@@ -71,7 +71,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
         static FinanceCalcResult<double> Bessely1(double fX)
         {
             if (fX <= 0)
-                return new FinanceCalcResult<double>(PfErrorType.Num);
+                return new FinanceCalcResult<double>(eErrorType.Num);
             const double fMaxIteration = 9000000.0; // should not be reached
             if (fX > 5.0e+6) // iteration is not considerable better then approximation
                 return new FinanceCalcResult<double>(-Math.Sqrt(1 / f_PI / fX)
@@ -115,7 +115,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Engineering
             }
             while (!bHasFound && k < fMaxIteration);
             if (!bHasFound)
-                new FinanceCalcResult<double>(PfErrorType.Num);
+                new FinanceCalcResult<double>(eErrorType.Num);
             return new FinanceCalcResult<double>(-u * 2.0 / f_PI);
         }
 

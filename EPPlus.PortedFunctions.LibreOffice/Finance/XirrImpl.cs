@@ -20,7 +20,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Finance
 
         public static FinanceCalcResult<double> GetXirr(IEnumerable<double> aValues, IEnumerable<System.DateTime> aDates, double rGuessRate = 0.1)
         {
-            if (aValues.Count() != aDates.Count()) return new FinanceCalcResult<double>(PfErrorType.Value);
+            if (aValues.Count() != aDates.Count()) return new FinanceCalcResult<double>(eErrorType.Value);
 
             // maximum epsilon for end of iteration
             const double fMaxEps = 1e-10;
@@ -63,7 +63,7 @@ namespace EPPlus.PortedFunctions.LibreOffice.Finance
             while (bContLoop && !bResultRateScanEnd);
 
             if (bContLoop)
-                return new FinanceCalcResult<double>(PfErrorType.Value);
+                return new FinanceCalcResult<double>(eErrorType.Value);
             return new FinanceCalcResult<double>(fResultRate);
         }
 

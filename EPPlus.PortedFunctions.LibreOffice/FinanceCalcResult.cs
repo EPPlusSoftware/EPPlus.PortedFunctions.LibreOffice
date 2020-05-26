@@ -32,7 +32,7 @@ namespace EPPlus.PortedFunctions.LibreOffice
             DataType = dataType;
         }
 
-        public FinanceCalcResult(PfErrorType error)
+        public FinanceCalcResult(eErrorType error)
         {
             HasError = true;
             ExcelErrorType = error;
@@ -47,6 +47,6 @@ namespace EPPlus.PortedFunctions.LibreOffice
             get; private set;
         }
 
-        public PfErrorType ExcelErrorType { get; private set; }
+        public eErrorType ExcelErrorType { get; private set; }
     }
 }
